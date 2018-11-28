@@ -20,6 +20,12 @@ defmodule AnkikoreanWeb.Router do
     get "/translate", PageController, :translate
   end
 
+  scope "/v1/", AnkikoreanWeb do
+    pipe_through :api
+
+    get "/translate", TranslateController, :translate
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", AnkikoreanWeb do
   #   pipe_through :api
