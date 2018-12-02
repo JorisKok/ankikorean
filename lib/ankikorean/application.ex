@@ -1,6 +1,6 @@
 defmodule Ankikorean.Application do
   use Application
-  alias AnkikoreanWeb.KoreanEnglish
+  alias AnkikoreanWeb.Korean
 
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
@@ -12,7 +12,7 @@ defmodule Ankikorean.Application do
       # Start the endpoint when the application starts
       supervisor(AnkikoreanWeb.Endpoint, []),
       # Start your own worker by calling: Ankikorean.Worker.start_link(arg1, arg2, arg3)
-      supervisor(KoreanEnglish, [])
+      supervisor(Korean, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

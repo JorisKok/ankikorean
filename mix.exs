@@ -41,7 +41,8 @@ defmodule Ankikorean.Mixfile do
       {:tesla, "~> 1.2.1"},
       {:floki, "~> 0.20.0"},
       {:plug_cowboy, "~> 1.0"},
-      {:poison, "~> 3.1"}
+      {:poison, "~> 3.1"},
+      {:mox, "~> 0.4", only: :test}
     ]
   end
 end

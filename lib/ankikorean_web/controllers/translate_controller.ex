@@ -1,11 +1,11 @@
 defmodule AnkikoreanWeb.TranslateController do
   use AnkikoreanWeb, :controller
-  alias AnkikoreanWeb.KoreanEnglish
+  alias AnkikoreanWeb.Korean
 
   def translate(conn, %{"email" => email, "korean" => value}) do
-    #    KoreanEnglish.patch(email, value)
+    data = Korean.patch(email, value)
 
-    render conn, "index.json", status: :ok, data: %{"search term": "answer"}
+    render conn, "index.json", status: :ok, data: data
   end
 
   def translate(conn, _) do

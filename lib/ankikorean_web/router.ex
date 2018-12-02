@@ -17,7 +17,6 @@ defmodule AnkikoreanWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    get "/translate", PageController, :translate
   end
 
   scope "/v1/", AnkikoreanWeb do
