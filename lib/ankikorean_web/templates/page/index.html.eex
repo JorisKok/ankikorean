@@ -5,30 +5,60 @@
 <div class="row marketing">
   <div class="col-lg-12">
     <div id="app">
+      <div class="form-wrapper" @click='submit'>
+        <form ref='form' @submit='fetchData'>
+
+          <input type="email" v-model="email" placeholder="your@email.com" required>
+          <input type="text" v-model="korean" placeholder="Korean" autofocus required>
+          <button type='submit'>Submit</button>
+          <div v-if="loading" class="loader"></div>
+        </form>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Korean</th>
+            <th>English</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="(value, key) in stack">
+            <td>{{key}}</td>
+            <td>{{value}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-new Vue({
-    el: '#app',
-    created() {
-        this.fetchData();
-    },
-    data: {
-        posts: []
-    },
-    methods: {
-        fetchData() {
+    new Vue({
+        el: '#app',
+        data: {
+            email: null,
+            korean: null,
+            stack: [],
+            loading: false,
+        },
+        methods: {
+            submit() {
+                this.$refs.form.addEventListener('submit', event => {
+                    event.preventDefault()
+                })
+            },
+            fetchData() {
+                this.loading = true;
+                axios.get(`/v1/translate?email=${this.email}&korean=${this.korean}`).then(response => {
+                    if ('success' in response.data) {
+                        this.stack = response.data.success.data;
+                    }
+                    this.loading = false;
+                });
+            }
 
-          console.log('fetch');
-          axios.get('/v1/translate').then(response => {
-              console.log(response);
-              // TODO finish
-            // this.posts = response.data;
-            });
         }
-
-    }
-});
+    });
 </script>

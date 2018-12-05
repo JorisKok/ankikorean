@@ -8,16 +8,14 @@ defmodule AnkikoreanWeb.Daum do
 
   @impl KoreanDictionary
   def korean_to_english(korean) do
-    #    {:ok, response} = get(URI.encode(korean) <> "&dic=eng&search_first=Y")
-    #
-    #    Floki.find(response.body, "[data-target=word]")
-    #    |> Floki.find("div.cleanword_type")
-    #    |> Floki.text()
-    #    |> URI.encode()
-    #    |> format()
-    #    |> URI.decode()
+        {:ok, response} = get(URI.encode(korean) <> "&dic=eng&search_first=Y")
 
-    "FROM DAUM"
+        Floki.find(response.body, "[data-target=word]")
+        |> Floki.find("div.cleanword_type")
+        |> Floki.text()
+        |> URI.encode()
+        |> format()
+        |> URI.decode()
   end
 
   defp format(text) do
