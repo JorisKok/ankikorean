@@ -15,7 +15,11 @@ defmodule AnkikoreanWeb.Korean do
   end
 
   def patch(key, value) do
-    result = merge(Korean.get(key), %{value => @korean_dictionary.korean_to_english(value)})
+
+    translation = @korean_dictionary.korean_to_english(value)
+                  |> String.replace(",", ";")
+                  |> String.replace(~r/((?!^)[0-9])/, " \\1")
+    result = merge(Korean.get(key), %{value => translation})
 
     :ok = Agent.update(__MODULE__, &Map.put(&1, key, result))
 

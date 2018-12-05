@@ -4,6 +4,6 @@ defmodule AnkikoreanWeb.DaumMock do
 
   @impl KoreanDictionary
   def korean_to_english(value) do
-    "hello"
+    "1.Hello2.Greeting,3.Hey"
   end
 end
