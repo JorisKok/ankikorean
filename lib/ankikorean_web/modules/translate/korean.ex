@@ -5,7 +5,8 @@ defmodule AnkikoreanWeb.Korean do
 
   def patch(email, value) do
     translation = @korean_dictionary.korean_to_english(value)
-                  |> String.replace(",", ";")
+                  |> String.replace(",", "")
+                  |> String.replace("  ", " ")
                   |> String.replace(~r/((?!^)[0-9])/, " \\1")
 
     values = case Ankikorean.Cache.get(email) do

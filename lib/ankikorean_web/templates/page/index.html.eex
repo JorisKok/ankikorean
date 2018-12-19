@@ -13,6 +13,7 @@
           <button type='submit'>Submit</button>
           <div v-if="loading" class="loader"></div>
         </form>
+
       </div>
       <div class="table-responsive">
         <table class="table">
@@ -29,6 +30,8 @@
           </tr>
           </tbody>
         </table>
+
+        <button @click="download">Download</button>
       </div>
     </div>
   </div>
@@ -57,8 +60,16 @@
                     }
                     this.loading = false;
                 });
-            }
+            },
+            download() {
+                console.log(this.email)
+                if (!this.email) {
+                    alert('No email filled in')
+                    return;
+                }
 
+                window.open(`/v1/export?email=${this.email}`, '_blank');
+            }
         }
     });
 </script>

@@ -23,6 +23,7 @@ defmodule AnkikoreanWeb.Router do
     pipe_through :api
 
     get "/translate", TranslateController, :translate
+    get "/export", ExportController, :export
   end
 
   # Other scopes may use custom stacks.

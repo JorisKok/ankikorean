@@ -1,12 +1,15 @@
 defmodule AnkikoreanWeb.TranslateControllerTest do
   use AnkikoreanWeb.ConnCase
 
+  # TODO if email invalid
+  # TODO if empty korean
+
   test "GET /v1/translate", %{conn: conn} do
     conn = get conn, "/v1/translate", %{"email" => "test@example.com", "korean" => "안녕하세요"}
     assert json_response(conn, 200) == %{
              "success" => %{
                "data" => %{
-                 "안녕하세요" => "1.Hello 2.Greeting; 3.Hey"
+                 "안녕하세요" => "1.Hello 2.Greeting 3.Hey"
                }
              }
            }
@@ -17,7 +20,7 @@ defmodule AnkikoreanWeb.TranslateControllerTest do
     assert json_response(conn, 200) == %{
              "success" => %{
                "data" => %{
-                 "안녕하세요" => "1.Hello 2.Greeting; 3.Hey"
+                 "안녕하세요" => "1.Hello 2.Greeting 3.Hey"
                }
              }
            }
@@ -26,8 +29,8 @@ defmodule AnkikoreanWeb.TranslateControllerTest do
     assert json_response(conn, 200) == %{
              "success" => %{
                "data" => %{
-                 "안녕하세요" => "1.Hello 2.Greeting; 3.Hey",
-                 "중국어" => "1.Hello 2.Greeting; 3.Hey"
+                 "안녕하세요" => "1.Hello 2.Greeting 3.Hey",
+                 "중국어" => "1.Hello 2.Greeting 3.Hey"
                }
              }
            }
@@ -38,7 +41,7 @@ defmodule AnkikoreanWeb.TranslateControllerTest do
     assert json_response(conn, 200) == %{
              "success" => %{
                "data" => %{
-                 "하나" => "1.Hello 2.Greeting; 3.Hey"
+                 "하나" => "1.Hello 2.Greeting 3.Hey"
                }
              }
            }
@@ -47,7 +50,7 @@ defmodule AnkikoreanWeb.TranslateControllerTest do
     assert json_response(conn, 200) == %{
              "success" => %{
                "data" => %{
-                 "둘" => "1.Hello 2.Greeting; 3.Hey"
+                 "둘" => "1.Hello 2.Greeting 3.Hey"
                }
              }
            }
