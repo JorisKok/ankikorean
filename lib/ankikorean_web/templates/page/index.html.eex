@@ -21,12 +21,14 @@
           <tr>
             <th>Korean</th>
             <th>English</th>
+            <th>Options</th>
           </tr>
           </thead>
           <tbody>
           <tr v-for="(value, key) in stack">
             <td>{{key}}</td>
             <td>{{value}}</td>
+            <td><button @click="remove(key)">Delete</button></td>
           </tr>
           </tbody>
         </table>
@@ -59,6 +61,13 @@
                         this.stack = response.data.success.data;
                     }
                     this.loading = false;
+                });
+            },
+            remove(key) {
+                axios.delete(`/v1/translate?email=${this.email}&korean=${key}`).then(response => {
+                    if ('success' in response.data) {
+                        this.stack = response.data.success.data;
+                    }
                 });
             },
             download() {
