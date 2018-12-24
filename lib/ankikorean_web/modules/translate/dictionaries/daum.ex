@@ -4,18 +4,21 @@ defmodule AnkikoreanWeb.Daum do
   @behaviour KoreanDictionary
   @moduledoc false
 
-  plug Tesla.Middleware.BaseUrl, "http://dic.daum.net/search.do?q="
+  plug Tesla.Middleware.BaseUrl, "https://dic.daum.net/search.do?q="
 
   @impl KoreanDictionary
   def korean_to_english(korean) do
-        {:ok, response} = get(URI.encode(korean) <> "&dic=eng&search_first=Y")
+    IO.inspect(URI.encode(korean))
+    {:ok, response} = get(URI.encode(korean) <> "&dic=eng&search_first=Y")
+#    {:ok, response} = get(korean <> "&dic=eng&search_first=Y")
+    IO.inspect(response)
 
-        Floki.find(response.body, "[data-target=word]")
-        |> Floki.find("div.cleanword_type")
-        |> Floki.text()
-        |> URI.encode()
-        |> format()
-        |> URI.decode()
+    Floki.find(response.body, "[data-target=word]")
+    |> Floki.find("div.cleanword_type")
+    |> Floki.text()
+    |> URI.encode()
+    |> format()
+    |> URI.decode()
   end
 
   defp format(text) do

@@ -5,7 +5,7 @@ defmodule Ankikorean.Mixfile do
     [
       app: :ankikorean,
       version: "0.0.1",
-      elixir: "~> 1.4",
+      elixir: "~> 1.7.4",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
       start_permanent: Mix.env == :prod,
@@ -46,7 +46,8 @@ defmodule Ankikorean.Mixfile do
       {:csv, "~> 2.0.0"},
       {:dialyxir, "~> 1.0.0-rc.4", only: [:dev], runtime: false},
       {:quantum, "~> 2.3"},
-      {:timex, "~> 3.0"}
+      {:timex, "~> 3.0"},
+      {:distillery, "~> 2.0"},
     ]
   end
 end
