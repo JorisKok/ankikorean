@@ -1,9 +1,6 @@
 defmodule AnkikoreanWeb.TranslateControllerTest do
   use AnkikoreanWeb.ConnCase
 
-  # TODO if email invalid
-  # TODO if empty korean
-
   test "GET /v1/translate", %{conn: conn} do
     conn = get conn, "/v1/translate", %{"email" => "test@example.com", "korean" => "안녕하세요"}
     assert json_response(conn, 200) == %{
@@ -11,6 +8,15 @@ defmodule AnkikoreanWeb.TranslateControllerTest do
                "data" => %{
                  "안녕하세요" => "1.Hello 2.Greeting 3.Hey"
                }
+             }
+           }
+  end
+
+  test "GET /v1/translate with no email", %{conn: conn} do
+    conn = get conn, "/v1/translate", %{"email" => ""}
+    assert json_response(conn, 422) == %{
+             "error" => %{
+               "message" => "Please make sure email and search field are filled in"
              }
            }
   end
@@ -62,13 +68,22 @@ defmodule AnkikoreanWeb.TranslateControllerTest do
 
     conn = delete conn, "/v1/translate", %{"email" => "delete@example.com", "korean" => "덕일"}
     assert json_response(conn, 200) == %{
-               "success" => %{
+             "success" => %{
                "data" => %{
                  "네덜란드" => "1.Netherlands"
                }
              }
            }
 
-     assert {:found, %{"네덜란드" => "1.Netherlands"}} == Ankikorean.Cache.get("delete@example.com")
+    assert {:found, %{"네덜란드" => "1.Netherlands"}} == Ankikorean.Cache.get("delete@example.com")
+  end
+
+  test "DELETE /v1/translate with no email", %{conn: conn} do
+    conn = delete conn, "/v1/translate", %{"email" => ""}
+    assert json_response(conn, 422) == %{
+             "error" => %{
+               "message" => "Please make sure email is filled in"
+             }
+           }
   end
 end

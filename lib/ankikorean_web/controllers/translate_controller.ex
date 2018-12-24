@@ -9,8 +9,9 @@ defmodule AnkikoreanWeb.TranslateController do
   end
 
   def translate(conn, _) do
-
-    render conn, "index.json", status: :error, message: "Please make sure email and search field are filled"
+    conn
+    |> put_status(:unprocessable_entity)
+    |> render("index.json", status: :error, message: "Please make sure email and search field are filled in")
   end
 
   def delete(conn, %{"email" => email, "korean" => value}) do
@@ -19,6 +20,9 @@ defmodule AnkikoreanWeb.TranslateController do
     render conn, "index.json", status: :ok, data: data
   end
 
-  # TODO if invalid
-
+  def delete(conn, _) do
+    conn
+    |> put_status(:unprocessable_entity)
+    |> render("index.json", status: :error, message: "Please make sure email is filled in")
+  end
 end
