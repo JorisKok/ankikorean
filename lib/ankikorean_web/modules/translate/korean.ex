@@ -17,6 +17,11 @@ defmodule AnkikoreanWeb.Korean do
     Ankikorean.Cache.set(email, values)
   end
 
+  def delete(email, value) do
+    {:found, values} = Ankikorean.Cache.get(email)
+    Ankikorean.Cache.set(email, Map.delete(values, value))
+  end
+
   defp merge(nil, p1) do
     p1
   end

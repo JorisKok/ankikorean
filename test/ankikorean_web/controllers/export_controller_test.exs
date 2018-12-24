@@ -12,7 +12,7 @@ defmodule AnkikoreanWeb.ExportControllerTest do
   end
 
   test "GET /v1/export when no data is stored yet", %{conn: conn} do
-    conn = get conn, "/v1/export/", %{"email" => "export@example.com"}
+    conn = get conn, "/v1/export/", %{"email" => "export-no-data@example.com"}
 
     assert json_response(conn, 200) == %{
              "error" => %{

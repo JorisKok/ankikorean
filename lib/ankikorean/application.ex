@@ -11,7 +11,8 @@ defmodule Ankikorean.Application do
       # Start the endpoint when the application starts
       supervisor(AnkikoreanWeb.Endpoint, []),
       # Other workers
-      worker(Ankikorean.Cache, [[name: Ankikorean.Cache]])
+      worker(Ankikorean.Cache, [[name: Ankikorean.Cache]]),
+      worker(Ankikorean.Scheduler, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -23,6 +23,7 @@ defmodule AnkikoreanWeb.Router do
     pipe_through :api
 
     get "/translate", TranslateController, :translate
+    delete "/translate", TranslateController, :delete
     get "/export", ExportController, :export
   end
 

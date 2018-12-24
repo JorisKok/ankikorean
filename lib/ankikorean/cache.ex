@@ -17,6 +17,14 @@ defmodule Ankikorean.Cache do
     values
   end
 
+  def delete(email, value) do
+    GenServer.call(__MODULE__, {:delete, email, value})
+  end
+
+  def clear() do
+    GenServer.call(__MODULE__, {:clear})
+  end
+
   # Genserver callbacks
 
   def handle_call({:get, email}, _from, state) do
@@ -27,8 +35,14 @@ defmodule Ankikorean.Cache do
 
   def handle_call({:set, email, values}, _from, state) do
     %{ets_table_name: ets_table_name} = state
-    true = :ets.insert(ets_table_name, {email, values})
+    true = :ets.insert(ets_table_name, {email, values}) # This overwrites existing data
     {:reply, values, state}
+  end
+
+  def handle_call({:clear}, _from, state) do
+    %{ets_table_name: ets_table_name} = state
+    true = :ets.delete_all_objects(ets_table_name)
+    {:reply, %{}, state}
   end
 
   def init(_) do

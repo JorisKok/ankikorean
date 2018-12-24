@@ -44,7 +44,9 @@ defmodule Ankikorean.Mixfile do
       {:poison, "~> 3.1"},
       {:mox, "~> 0.4", only: :test},
       {:csv, "~> 2.0.0"},
-      {:dialyxir, "~> 1.0.0-rc.4", only: [:dev], runtime: false}
+      {:dialyxir, "~> 1.0.0-rc.4", only: [:dev], runtime: false},
+      {:quantum, "~> 2.3"},
+      {:timex, "~> 3.0"}
     ]
   end
 end
