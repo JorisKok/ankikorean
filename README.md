@@ -7,7 +7,9 @@ Interesting things:
 - No database is used, only caching via ETS
 
 
-Live at [ankikorean.nl](http://www.ankikorean.nl)
+Live at [Ankikorean](http://www.ankikorean.nl)
+
+And the [Docs](http://www.ankikorean.nl/doc/api-reference.html)
 
 
 ## How to use
