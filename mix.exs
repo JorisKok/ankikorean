@@ -51,11 +51,4 @@ defmodule Ankikorean.Mixfile do
       {:ex_doc, "~> 0.19", only: :dev, runtime: false},
     ]
   end
-
-  defp docs do
-    [
-      source_url: "https://github.com/JorisKok/ankikorean",
-      extras: ["README.md"]
-    ]
-  end
 end
