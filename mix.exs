@@ -48,6 +48,14 @@ defmodule Ankikorean.Mixfile do
       {:quantum, "~> 2.3"},
       {:timex, "~> 3.0"},
       {:distillery, "~> 2.0"},
+      {:ex_doc, "~> 0.19", only: :dev, runtime: false},
+    ]
+  end
+
+  defp docs do
+    [
+      source_url: "https://github.com/JorisKok/ankikorean",
+      extras: ["README.md"]
     ]
   end
 end

@@ -1,5 +1,7 @@
 defmodule Ankikorean.Cache do
-  @moduledoc false
+  @moduledoc """
+  Store the search results in ETS cache
+  """
 
   def start_link(opts \\ []) do
     GenServer.start_link(__MODULE__, [], opts)

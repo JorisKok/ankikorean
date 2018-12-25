@@ -1,5 +1,7 @@
 defmodule AnkikoreanWeb.Korean do
-  @moduledoc false
+  @moduledoc """
+  Translate Korean using a dictionary specified in the config files
+  """
 
   @korean_dictionary Application.get_env(:ankikorean, :korean_dictionary)
 

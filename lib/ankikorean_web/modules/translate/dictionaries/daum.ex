@@ -2,7 +2,10 @@ defmodule AnkikoreanWeb.Daum do
   use Tesla
   alias AnkikoreanWeb.KoreanDictionary
   @behaviour KoreanDictionary
-  @moduledoc false
+  @moduledoc """
+  Daum dictionary
+  http://dic.daum.net
+  """
 
   plug Tesla.Middleware.BaseUrl, "https://dic.daum.net/search.do?q="
 

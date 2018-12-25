@@ -1,7 +1,9 @@
 defmodule AnkikoreanWeb.DaumMock do
   alias AnkikoreanWeb.KoreanDictionary
   @behaviour AnkikoreanWeb.KoreanDictionary
-  @moduledoc false
+  @moduledoc """
+  Mocks the Daum dictionary
+  """
 
   @impl KoreanDictionary
   def korean_to_english(_value) do

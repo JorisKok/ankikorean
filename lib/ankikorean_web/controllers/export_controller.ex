@@ -1,6 +1,13 @@
 defmodule AnkikoreanWeb.ExportController do
   use AnkikoreanWeb, :controller
+  @moduledoc """
+  Exports the translations
+  """
 
+
+  @doc """
+  Export to CSV format
+  """
   def export(conn, %{"email" => email}) do
     case Ankikorean.Cache.get(email) do
       {:not_found} ->
