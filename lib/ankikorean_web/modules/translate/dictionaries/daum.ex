@@ -11,13 +11,9 @@ defmodule AnkikoreanWeb.Daum do
 
   @impl KoreanDictionary
   def korean_to_english(korean) do
-    IO.inspect(URI.encode(korean))
     {:ok, response} = get(URI.encode(korean) <> "&dic=eng&search_first=Y")
-#    {:ok, response} = get(korean <> "&dic=eng&search_first=Y")
-    IO.inspect(response)
 
-    Floki.find(response.body, "[data-target=word]")
-    |> Floki.find("div.cleanword_type")
+    Floki.find(response.body, "div.cleanword_type")
     |> Floki.text()
     |> URI.encode()
     |> format()
