@@ -10,6 +10,9 @@ defmodule AnkikoreanWeb.Korean do
                   |> String.replace(",", "")
                   |> String.replace("  ", " ")
                   |> String.replace(~r/((?!^)[0-9])/, " \\1")
+                  |> String.replace(~r/\p{Hangul}/u, "")
+                  |> String.trim_leading()
+                  |> String.trim_trailing()
 
     values = case Ankikorean.Cache.get(email) do
       {:not_found} -> %{value => translation}

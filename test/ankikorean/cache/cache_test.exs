@@ -10,7 +10,7 @@ defmodule Ankikorean.CacheTest do
   test "Cache is receivable" do
     result = Ankikorean.Cache.set("cache@example.com", %{"value" => "translation"})
 
-    assert result = Ankikorean.Cache.get("cache@example.com")
+    assert {:found, result} == Ankikorean.Cache.get("cache@example.com")
   end
 
   test "Cache item is deletable via set" do
