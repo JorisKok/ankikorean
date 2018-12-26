@@ -2,19 +2,47 @@
   <h2>Create Korean flashcards quickly</h2>
 </div>
 
-<div class="row marketing">
+<div id="app">
   <div class="col-lg-12">
     <div class="alert alert-info">
       <strong>Tip</strong> Type the base form for verbs, so instead of <strong>사랑해</strong> type <strong>사랑하다</strong>
     </div>
-    <div id="app">
+    <div id="container-fluid">
       <div class="form-wrapper success" @click='submit'>
-        <form ref='form' @submit='fetchData'>
+        <form ref='form' @submit='fetchData' class="form-horizontal">
+          <div class="row">
 
-          <input type="email" v-model="email" placeholder="your@email.com" required>
-          <input type="text" v-model="korean" placeholder="Korean" autofocus required>
-          <button type='submit'>Submit</button>
-          <div v-if="loading" class="loader"></div>
+            <div class="col-sm-12 col-md-4">
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for="email" style="padding-top:6px;">Email:</label>
+                </div>
+                <div class="col-sm-8">
+                  <input id="email" type="email" v-model="email" placeholder="your@email.com" required>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-md-4">
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for="korean" style="padding-top: 6px;">Korean:</label>
+                </div>
+                <div class="col-sm-8">
+                  <input id="korean" type="text" v-model="korean" placeholder="Korean" autofocus required>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-md-4">
+              <button type='submit'>Submit</button>
+              <div v-if="loading" class="loader"></div>
+            </div>
+          </div>
         </form>
       </div>
       <div class="table-responsive">
@@ -30,12 +58,18 @@
           <tr v-for="(value, key) in stack">
             <td>{{key}}</td>
             <td>{{value}}</td>
-            <td><button @click="remove(key)">Delete</button></td>
+            <td>
+              <button @click="remove(key)">Delete</button>
+            </td>
           </tr>
           </tbody>
         </table>
+      </div>
 
-        <button @click="download">Download</button>
+      <div class="row">
+        <div class="col-sm-12">
+          <button @click="download">Download</button>
+        </div>
       </div>
     </div>
   </div>
