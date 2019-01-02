@@ -4,7 +4,7 @@ defmodule Ankikorean.Mixfile do
   def project do
     [
       app: :ankikorean,
-      version: "0.0.2",
+      version: "0.0.3",
       elixir: "~> 1.7.4",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -49,6 +49,7 @@ defmodule Ankikorean.Mixfile do
       {:timex, "~> 3.0"},
       {:distillery, "~> 2.0"},
       {:ex_doc, "~> 0.19", only: :dev, runtime: false},
+      {:assert_value, ">= 0.0.0", only: [:dev, :test]}
     ]
   end
 end
