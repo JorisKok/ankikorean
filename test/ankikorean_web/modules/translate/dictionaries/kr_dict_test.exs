@@ -6,7 +6,6 @@ defmodule AnkikoreanWeb.KrDictTest do
   @doc """
   Note: The response from KrDict contains a lot of \t\n etc
   """
-
   describe "Test that the response from KrDict is properly formatted" do
 
     test "format for 건설하다", %{} do
