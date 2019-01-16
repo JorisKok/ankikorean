@@ -3,9 +3,14 @@ defmodule AnkikoreanWeb.TranslateControllerTest do
   import AssertValue
 
   test "GET /v1/translate", %{conn: conn} do
-    conn = get conn, "/v1/translate", %{"email" => "test@example.com", "korean" => "안녕하세요"}
+    conn = get conn, "/v1/translate", %{"email" => "test@example.com", "korean" => "건설하다"}
     assert_value json_response(conn, 200) == %{
-                   "success" => %{"data" => %{"안녕하세요" => "Hello, Greeting , Hey"}}
+                   "success" => %{
+                     "data" => %{
+                       "건설하다" =>
+                         "1.build; construct\n건물이나 시설을 새로 짓다.\nTo construct new buildings or facilities.\n2.establish; found\n나라나 조reate a country or an organization"
+                     }
+                   }
                  }
   end
 
@@ -19,17 +24,24 @@ defmodule AnkikoreanWeb.TranslateControllerTest do
   end
 
   test "GET /v1/translate maintains state", %{conn: conn} do
-    conn = get conn, "/v1/translate", %{"email" => "test-maintain-state@example.com", "korean" => "안녕하세요"}
+    conn = get conn, "/v1/translate", %{"email" => "test-maintain-state@example.com", "korean" => "건설하다"}
     assert_value json_response(conn, 200) == %{
-                   "success" => %{"data" => %{"안녕하세요" => "Hello, Greeting , Hey"}}
+                   "success" => %{
+                     "data" => %{
+                       "건설하다" =>
+                         "1.build; construct\n건물이나 시설을 새로 짓다.\nTo construct new buildings or facilities.\n2.establish; found\n나라나 조reate a country or an organization"
+                     }
+                   }
                  }
 
     conn = get conn, "/v1/translate", %{"email" => "test-maintain-state@example.com", "korean" => "중국어"}
     assert_value json_response(conn, 200) == %{
                    "success" => %{
                      "data" => %{
-                       "안녕하세요" => "Hello, Greeting , Hey",
-                       "중국어" => "Hello, Greeting , Hey"
+                       "건설하다" =>
+                         "1.build; construct\n건물이나 시설을 새로 짓다.\nTo construct new buildings or facilities.\n2.establish; found\n나라나 조reate a country or an organization",
+                       "중국어" =>
+                         "1.build; construct\n건물이나 시설을 새로 짓다.\nTo construct new buildings or facilities.\n2.establish; found\n나라나 조reate a country or an organization"
                      }
                    }
                  }
@@ -38,12 +50,22 @@ defmodule AnkikoreanWeb.TranslateControllerTest do
   test "GET /v1/translate stores the vocabulary list per email", %{conn: conn} do
     conn = get conn, "/v1/translate", %{"email" => "first@example.com", "korean" => "하나"}
     assert_value json_response(conn, 200) == %{
-                   "success" => %{"data" => %{"하나" => "Hello, Greeting , Hey"}}
+                   "success" => %{
+                     "data" => %{
+                       "하나" =>
+                         "1.build; construct\n건물이나 시설을 새로 짓다.\nTo construct new buildings or facilities.\n2.establish; found\n나라나 조reate a country or an organization"
+                     }
+                   }
                  }
 
     conn = get conn, "/v1/translate", %{"email" => "second@example.com", "korean" => "둘"}
     assert_value json_response(conn, 200) == %{
-                   "success" => %{"data" => %{"둘" => "Hello, Greeting , Hey"}}
+                   "success" => %{
+                     "data" => %{
+                       "둘" =>
+                         "1.build; construct\n건물이나 시설을 새로 짓다.\nTo construct new buildings or facilities.\n2.establish; found\n나라나 조reate a country or an organization"
+                     }
+                   }
                  }
 
   end
