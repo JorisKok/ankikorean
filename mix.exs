@@ -4,8 +4,8 @@ defmodule Ankikorean.Mixfile do
   def project do
     [
       app: :ankikorean,
-      version: "0.0.3",
-      elixir: "~> 1.7.4",
+      version: "0.0.4",
+      elixir: "~> 1.8",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
       start_permanent: Mix.env == :prod,
@@ -38,6 +38,7 @@ defmodule Ankikorean.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:tesla, "~> 1.2.1"},
+      {:hackney, "~> 1.10"},
       {:floki, "~> 0.20.0"},
       {:plug_cowboy, "~> 2.0"},
       {:plug, "~> 1.7"},
@@ -49,7 +50,7 @@ defmodule Ankikorean.Mixfile do
       {:timex, "~> 3.0"},
       {:distillery, "~> 2.0"},
       {:ex_doc, "~> 0.19", only: :dev, runtime: false},
-      {:assert_value, ">= 0.0.0", only: [:dev, :test]}
+      {:assert_value, ">= 0.0.0", only: [:dev, :test]},
     ]
   end
 end

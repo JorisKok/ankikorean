@@ -1,25 +1,10 @@
 # Ankikorean
 
-A simple website using Elixir Phoenix and VueJS for making flash cards easily. A small project for me to learn more about Elixir and Phoenix, whilst also making something that is useful. 
+#TODO put this in a script
 
-Interesting things:
-- Phoenix is fast, 200μs in prod for basic calls (some use curl, so they take a while)
-- No database is used, only caching via ETS
+How to deploy: 
+```
+scp _build/prod/rel/ankikorean/releases/{version}/ankikorean.tar.gz joris@185.224.89.69:/home/joris/{version}/ankikorean.tar.gz
 
-
-Live at [Ankikorean](http://www.ankikorean.nl)
-
-And the [Docs](http://www.ankikorean.nl/doc/api-reference.html)
-
-
-## How to use
-1. Fill in your email
-    - Your email is used as an identifier
-2. Search for the korean words you want as a flash card
-3. Export to .csv
-4. Import to Anki or any other program that supports .csv imports
-
-## Learn more
-
-Feature requests can be submitted via my [github](https://github.com/JorisKok/ankikorean) page.
-
+PORT=4000 ./ankikorean start
+```
