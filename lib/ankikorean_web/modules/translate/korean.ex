@@ -1,4 +1,6 @@
 defmodule AnkikoreanWeb.Korean do
+  alias AnkikoreanWeb.ChineseDict
+
   @moduledoc """
   Translate Korean using a dictionary specified in the config files
   """
@@ -6,8 +8,26 @@ defmodule AnkikoreanWeb.Korean do
   @korean_dictionary Application.get_env(:ankikorean, :korean_dictionary)
 
   def patch(email, value) do
-    translation = @korean_dictionary.korean_to_english(value) |> @korean_dictionary.format
+    case @korean_dictionary.korean_to_english(value) |> @korean_dictionary.format do
+      %{"translation" => translation, "hanzi" => hanzi} ->
+        set_korean_translation(email, value, translation)
+        set_chinese_translation(email, hanzi)
+      translation ->
+        set_korean_translation(email, value, translation)
+    end
+  end
 
+  defp set_chinese_translation(email, hanzi) do
+    set_translation(email, hanzi, ChineseDict.translate(hanzi))
+  end
+
+  defp set_korean_translation(email, value, translation) do
+    set_translation(email, value, translation)
+  end
+
+  # TODO if empty value? translation ?
+
+  defp set_translation(email, value, translation) do
     values = case Ankikorean.Cache.get(email) do
       {:not_found} -> %{value => translation}
       {:found, result} -> merge(result, %{value => translation})

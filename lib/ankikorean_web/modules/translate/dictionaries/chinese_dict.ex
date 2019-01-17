@@ -5,15 +5,15 @@ defmodule AnkikoreanWeb.ChineseDict do
   """
 
   def translate(chinese) do
-    case find_word(chinese) do
-      "" ->
-        String.split(chinese, "", trim: true)
-          |> Enum.map(fn word -> find_word(word) end)
-          |> Enum.reject(fn word -> word == "" end)
-          |> Enum.join(" AND ")
-      result -> result
+    case Regex.replace(~r/\p{Hangul}/u, chinese, "") |> find_word do
+         "" ->
+           String.split(chinese, "", trim: true)
+           |> Enum.map(fn word -> find_word(word) end)
+           |> Enum.reject(fn word -> word == "" end)
+           |> Enum.join(" AND ")
+         result -> result
 
-    end
+       end
   end
 
   defp find_word(chinese) do

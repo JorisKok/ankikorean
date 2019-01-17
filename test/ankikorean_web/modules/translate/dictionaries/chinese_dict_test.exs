@@ -1,4 +1,4 @@
-defmodule AnkikoreanWeb.ChineseDictTest do
+defmodule AnkikoreanWeb.ChineseDictTests do
   use AnkikoreanWeb.ConnCase
   alias AnkikoreanWeb.ChineseDict
   import AssertValue
@@ -17,6 +17,14 @@ defmodule AnkikoreanWeb.ChineseDictTest do
                      "re4 - to warm up/to heat up/hot (of weather)/heat/fervent"
     end
 
+    test "Get the translation for 簡單", %{} do
+      assert_value ChineseDict.translate("簡單") == "jian3 dan1 - simple/not complicated"
+    end
+
+    test "Get the translation for 簡單하다", %{} do
+      assert_value ChineseDict.translate("簡單하다") == "jian3 dan1 - simple/not complicated"
+    end
+
     # This word doesnt exist, so it should get two single translations and attach
     test "Get the translation for 熱戶", %{} do
       assert_value ChineseDict.translate("熱戶") ==
@@ -31,5 +39,6 @@ defmodule AnkikoreanWeb.ChineseDictTest do
     test "Get the translation for non existing character", %{} do
       assert_value ChineseDict.translate("없다") == ""
     end
+
   end
 end

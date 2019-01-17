@@ -25,6 +25,11 @@ defmodule AnkikoreanWeb.KrDict do
 
   @doc """
   Extract the hangul, hanzi and english translation
+
+  Put a new line between the hangul and roman, to create the following format:
+    Definition
+    Korean sentence
+    Sentence translation in English
   """
   @impl KoreanDictionary
   def format(text) do
@@ -34,22 +39,28 @@ defmodule AnkikoreanWeb.KrDict do
            ~r/(?<hangul>\p{Hangul}+)\((?<hanzi>.+?)\).+View All (?<english>.+).+/u,
            text_without_newlines
          ) do
-      # If it has no hanzi, then it won't match
-      nil -> Regex.named_captures(~r/(?<hangul>\p{Hangul}+)\ .+View All (?<english>.+).+/u, text_without_newlines) |> format_matches
+      # If it has no hanzi, then we match without hanzi
+      nil ->
+        Regex.named_captures(~r/(?<hangul>\p{Hangul}+)\ .+View All (?<english>.+).+/u, text_without_newlines) |> format_matches
       # If success, just return it
-      result -> result |> format_matches
+      result ->
+        result |> format_matches
     end
   end
 
-  @doc """
-  Format the matched hangul, hanzi and english to be nicely shown in anki
+  defp format_matches(%{"english" => english, "hangul" => _hangul, "hanzi" => hanzi}) do
+      %{
+        "translation" => english |> format_matches,
+        "hanzi" => hanzi
+      }
+  end
 
-  Put a new line between the hangul and roman, to create the following format:
-    Definition
-    Korean sentence
-    Sentence translation in English
-  """
-  def format_matches(%{"english" => english}) do
+  defp format_matches(%{"english" => english}) do
+    english
+    |> format_matches
+  end
+
+  defp format_matches(english) do
     # Add a newline between the definition and Korean sentence
     one = Regex.replace(~r/([a-zA-Z])(\p{Hangul})/u, english, "\\1\n\\2")
 

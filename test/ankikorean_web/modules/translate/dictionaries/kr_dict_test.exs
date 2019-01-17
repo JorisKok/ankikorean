@@ -12,13 +12,11 @@ defmodule AnkikoreanWeb.KrDictTest do
       assert_value KrDict.format(
                      "건설하다\r\n\t\t\t\t\t\t\t\t\t(建設하다)\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t       \t\t\t\t\t\t동사\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t       \t\t\t\t\t\t\r\n\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\tVerb\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t[건ː설하다]\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t                        \t\tView All 1.build; construct건물이나 시설을 새로 짓다.To construct new buildings or facilities.2.establish; found나라나 조reate a country or an organization."
                    ) ==
-                     """
-                     1.build; construct
-                     건물이나 시설을 새로 짓다.
-                     To construct new buildings or facilities.
-                     2.establish; found
-                     나라나 조reate a country or an organization<NOEOL>
-                     """
+                     %{
+                       "hanzi" => "建設하다",
+                       "translation" =>
+                         "1.build; construct\n건물이나 시설을 새로 짓다.\nTo construct new buildings or facilities.\n2.establish; found\n나라나 조reate a country or an organization"
+                     }
     end
 
     test "format for 시원섭섭하다", %{} do
@@ -36,11 +34,11 @@ defmodule AnkikoreanWeb.KrDictTest do
       assert_value KrDict.format(
                      "자동차\r\n\t\t\t\t\t\t\t\t\t(自動車)\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t       \t\t\t\t\t\t명사\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t       \t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\tNoun\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t[자동차]\r\n\t\t\t\t\t\t\t\t\tView All car; automob엔진의 힘으로 바퀴를 굴려서 도로 위를 움직이도록 만든 차.A vehicle which moves its wheels by the power of its engine in order to run on roads."
                    ) ==
-                     """
-                     car; automob
-                     엔진의 힘으로 바퀴를 굴려서 도로 위를 움직이도록 만든 차.
-                     A vehicle which moves its wheels by the power of its engine in order to run on roads<NOEOL>
-                     """
+                     %{
+                       "hanzi" => "自動車",
+                       "translation" =>
+                         "car; automob\n엔진의 힘으로 바퀴를 굴려서 도로 위를 움직이도록 만든 차.\nA vehicle which moves its wheels by the power of its engine in order to run on roads"
+                     }
     end
 
   end
