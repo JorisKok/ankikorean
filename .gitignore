@@ -4,6 +4,7 @@
 /deps
 .idea/
 /*.ez
+RELEASE.md
 
 # Generated on crash by the VM
 erl_crash.dump
