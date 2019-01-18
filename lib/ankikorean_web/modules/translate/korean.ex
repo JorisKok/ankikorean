@@ -12,6 +12,7 @@ defmodule AnkikoreanWeb.Korean do
       %{"translation" => translation, "hanzi" => hanzi} ->
         set_korean_translation(email, value, translation)
         set_chinese_translation(email, hanzi)
+      nil -> nil
       translation ->
         set_korean_translation(email, value, translation)
     end
@@ -24,8 +25,6 @@ defmodule AnkikoreanWeb.Korean do
   defp set_korean_translation(email, value, translation) do
     set_translation(email, value, translation)
   end
-
-  # TODO if empty value? translation ?
 
   defp set_translation(email, value, translation) do
     values = case Ankikorean.Cache.get(email) do

@@ -10,9 +10,12 @@ defmodule AnkikoreanWeb.TranslateController do
   Translate from Korean to English
   """
   def translate(conn, %{"email" => email, "korean" => value}) do
-    data = Korean.patch(email, value)
-
-    render conn, "index.json", status: :ok, data: data
+    case Korean.patch(email, value) do
+      nil -> conn
+             |> put_status(404)
+             |> render("index.json", status: :error, message: "Translation not found")
+      data -> render conn, "index.json", status: :ok, data: data
+    end
   end
 
   def translate(conn, _) do

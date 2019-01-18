@@ -18,8 +18,6 @@ defmodule AnkikoreanWeb.KrDict do
 
     Floki.find(response.body, "li#article0")
     |> Floki.text
-    |> IO.inspect
-
 
   end
 
@@ -60,6 +58,10 @@ defmodule AnkikoreanWeb.KrDict do
     |> format_matches
   end
 
+  defp format_matches(nil) do
+    nil
+  end
+
   defp format_matches(english) do
     # Add a newline between the definition and Korean sentence
     one = Regex.replace(~r/([a-zA-Z])(\p{Hangul})/u, english, "\\1\n\\2")
@@ -70,4 +72,5 @@ defmodule AnkikoreanWeb.KrDict do
     # If multiple definitions are found, they are identified by .2. and .3. etc
     Regex.replace(~r/(\.)([2-9]\.)/, two, "\\1\n\\2")
   end
+
 end

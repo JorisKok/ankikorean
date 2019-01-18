@@ -92,12 +92,17 @@
             },
             fetchData() {
                 this.loading = true;
-                axios.get(`/v1/translate?email=${this.email}&korean=${this.korean}`).then(response => {
-                    if ('success' in response.data) {
-                        this.stack = response.data.success.data;
-                    }
-                    this.loading = false;
-                });
+                axios.get(`/v1/translate?email=${this.email}&korean=${this.korean}`)
+                    .then(response => {
+                        if ('success' in response.data) {
+                            this.stack = response.data.success.data;
+                        }
+                        this.loading = false;
+                    })
+                    .catch(error => {
+                        this.loading = false;
+                        alert("No translation found");
+                    });
             },
             remove(key) {
                 axios.delete(`/v1/translate?email=${this.email}&korean=${key}`).then(response => {
@@ -107,7 +112,6 @@
                 });
             },
             download() {
-                console.log(this.email)
                 if (!this.email) {
                     alert('No email filled in')
                     return;
