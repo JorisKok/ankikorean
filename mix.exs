@@ -4,7 +4,7 @@ defmodule Ankikorean.Mixfile do
   def project do
     [
       app: :ankikorean,
-      version: "0.0.5",
+      version: "0.0.6",
       elixir: "~> 1.8",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,

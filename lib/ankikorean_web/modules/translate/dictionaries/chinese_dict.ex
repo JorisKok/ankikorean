@@ -1,27 +1,30 @@
 defmodule AnkikoreanWeb.ChineseDict do
+  alias Ankikorean.ChineseCache
   @moduledoc """
   Our small dictionary
   Uses the publicly available ce-dict in assets/dict/
   """
 
   def translate(chinese) do
-    case Regex.replace(~r/\p{Hangul}/u, chinese, "") |> find_word do
-         "" ->
-           String.split(chinese, "", trim: true)
-           |> Enum.map(fn word -> find_word(word) end)
-           |> Enum.reject(fn word -> word == "" end)
-           |> Enum.join(" AND ")
-         result -> result
+    case Regex.replace(~r/\p{Hangul}/u, chinese, "")
+         |> find_word do
+      nil ->
+        case String.split(chinese, "", trim: true)
+             |> Enum.map(fn word -> find_word(word) end)
+             |> Enum.reject(fn word -> word == nil end)
+          do
+            [] -> nil
+            result -> Enum.join(result, " AND ")
+        end
+      result -> result
 
-       end
+    end
   end
 
   defp find_word(chinese) do
-    result = File.stream!("assets/dict/cedict_1_0_ts_utf-8_mdbg.txt")
-             |> Stream.filter(&(Regex.match?(~r/(^#{chinese} .+?|^.+? #{chinese}) .+/u, &1)))
-             |> Enum.to_list
-             |> to_string
-
-    Regex.replace(~r/.+?\[(.+)\] \/(.+)(\/\n)/u, result, "\\1 - \\2")
+    case ChineseCache.get(chinese) do
+      {:found, translation} -> translation
+      _ -> nil
+    end
   end
 end

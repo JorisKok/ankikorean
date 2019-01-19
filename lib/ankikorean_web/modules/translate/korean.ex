@@ -19,7 +19,10 @@ defmodule AnkikoreanWeb.Korean do
   end
 
   defp set_chinese_translation(email, hanzi) do
-    set_translation(email, hanzi, ChineseDict.translate(hanzi))
+    case ChineseDict.translate(hanzi) do
+      nil -> nil
+      translation -> set_translation(email, hanzi, translation)
+    end
   end
 
   defp set_korean_translation(email, value, translation) do

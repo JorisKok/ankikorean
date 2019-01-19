@@ -12,6 +12,7 @@ defmodule Ankikorean.Application do
       supervisor(AnkikoreanWeb.Endpoint, []),
       # Other workers
       worker(Ankikorean.Cache, [[name: Ankikorean.Cache]]),
+      worker(Ankikorean.ChineseCache, [[name: Ankikorean.ChineseCache]]),
       worker(Ankikorean.Scheduler, [])
     ]
 
