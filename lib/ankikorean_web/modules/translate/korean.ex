@@ -7,11 +7,16 @@ defmodule AnkikoreanWeb.Korean do
 
   @korean_dictionary Application.get_env(:ankikorean, :korean_dictionary)
 
-  def patch(email, value) do
+  def patch(email, value, include_hanzi) do
     case @korean_dictionary.korean_to_english(value) |> @korean_dictionary.format do
       %{"translation" => translation, "hanzi" => hanzi} ->
-        set_korean_translation(email, value, translation)
-        set_chinese_translation(email, hanzi)
+        case include_hanzi do
+          "true" ->
+            set_korean_translation(email, value, translation)
+            set_chinese_translation(email, hanzi)
+          "false" ->
+            _result = set_korean_translation(email, value, translation) # result var is required, else it will return a 404 in translate controller
+        end
       nil -> nil
       translation ->
         set_korean_translation(email, value, translation)

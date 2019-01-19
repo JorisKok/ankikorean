@@ -39,6 +39,22 @@
 
           <div class="row">
             <div class="col-sm-12 col-md-4">
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for="include_hanzi" style="padding-top: 6px;">한자:</label>
+                </div>
+                <div class="col-sm-8">
+                  <label class="inline-label">
+                    <input id="include_hanzi" type="checkbox" v-model="include_hanzi" checked>
+                    include Chinese characters if available?
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-md-4">
               <button type='submit'>Submit</button>
               <div v-if="loading" class="loader"></div>
             </div>
@@ -83,6 +99,7 @@
             korean: null,
             stack: [],
             loading: false,
+            include_hanzi: true,
         },
         methods: {
             submit() {
@@ -92,7 +109,7 @@
             },
             fetchData() {
                 this.loading = true;
-                axios.get(`/v1/translate?email=${this.email}&korean=${this.korean}`)
+                axios.get(`/v1/translate?email=${this.email}&korean=${this.korean}&include_hanzi=${this.include_hanzi}`)
                     .then(response => {
                         if ('success' in response.data) {
                             this.stack = response.data.success.data;

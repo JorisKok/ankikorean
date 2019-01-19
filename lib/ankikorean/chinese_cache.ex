@@ -27,8 +27,13 @@ defmodule Ankikorean.ChineseCache do
         "pinyin" => pinyin,
         "translation" => translation
       } ->
-        set(simplified, "#{pinyin} - #{translation}")
-        set(traditional, "#{pinyin} - #{translation}")
+        case (simplified == traditional) do
+          true ->
+            set(simplified, "#{pinyin} - #{translation}")
+          false ->
+            set(simplified, "#{pinyin} - #{translation}")
+            set(traditional, "#{pinyin} - #{translation}")
+        end
       _ -> nil # Empty lines come here
     end
 

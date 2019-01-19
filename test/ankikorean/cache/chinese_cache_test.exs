@@ -11,7 +11,7 @@ defmodule Ankikorean.ChineseCacheTest do
 
       assert_value Ankikorean.ChineseCache.get("工作") ==
                      {:found,
-                      "gong1 zuo4 - to work/(of a machine) to operate/job/work/task/CL:個|个[ge4],份[fen4],項|项[xiang4]"}
+                      "gong1 zuo4 - to work/(of a machine) to operate/job/work/task/CL:個|个[ge4],份[fen4],項|项[xiang4] AND work"}
 
       assert_value Ankikorean.ChineseCache.get("龜頭") ==
                      {:found, "gui1 tou2 - head of a turtle/glans penis"}
@@ -30,13 +30,15 @@ defmodule Ankikorean.ChineseCacheTest do
     test "Cache is settable" do
       result = Ankikorean.ChineseCache.set("cache@example.com", %{"value" => "translation"})
 
-      assert result == %{"value" => "translation"}
+      assert_value result == %{"value" => "translation"}
     end
 
     test "Cache is receivable" do
-      result = Ankikorean.ChineseCache.set("工作", "work")
+      Ankikorean.ChineseCache.set("工作", "work")
 
-      assert {:found, result} == Ankikorean.ChineseCache.get("工作")
+      assert_value Ankikorean.ChineseCache.get("工作") ==
+                     {:found,
+                      "gong1 zuo4 - to work/(of a machine) to operate/job/work/task/CL:個|个[ge4],份[fen4],項|项[xiang4] AND work"}
     end
   end
 end

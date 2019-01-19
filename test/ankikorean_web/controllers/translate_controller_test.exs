@@ -15,6 +15,19 @@ defmodule AnkikoreanWeb.TranslateControllerTest do
                  }
   end
 
+  test "GET /v1/translate without Chinese characters", %{conn: conn} do
+    conn = get conn, "/v1/translate", %{"email" => "test@example.com", "korean" => "건설하다", "include_hanzi" => "false"}
+    assert_value json_response(conn, 200) == %{
+                   "success" => %{
+                     "data" => %{
+                       "建設하다" => "jian4 she4 - to build/to construct/construction/constructive",
+                       "건설하다" =>
+                         "1.build; construct\n건물이나 시설을 새로 짓다.\nTo construct new buildings or facilities.\n2.establish; found\n나라나 조reate a country or an organization"
+                     }
+                   }
+                 }
+  end
+
   test "GET /v1/translate with no email", %{conn: conn} do
     conn = get conn, "/v1/translate", %{"email" => ""}
     assert_value json_response(conn, 422) == %{
