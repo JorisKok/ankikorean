@@ -46,7 +46,7 @@
                 <div class="col-sm-8">
                   <label class="inline-label">
                     <input id="include_hanzi" type="checkbox" v-model="include_hanzi" checked>
-                    include Chinese characters if available?
+                    include Hanja?
                   </label>
                 </div>
               </div>
