@@ -7,11 +7,12 @@ defmodule Ankikorean.ChineseCacheTest do
   """
 
   describe "Check that the cache is properly initiated on server start" do
+    @tag :current
     test "Test if some values are available after initiating" do
 
       assert_value Ankikorean.ChineseCache.get("工作") ==
                      {:found,
-                      "gong1 zuo4 - to work/(of a machine) to operate/job/work/task/CL:個|个[ge4],份[fen4],項|项[xiang4] AND work"}
+                      "gong1 zuo4 - to work/(of a machine) to operate/job/work/task/CL:個|个[ge4],份[fen4],項|项[xiang4]"}
 
       assert_value Ankikorean.ChineseCache.get("龜頭") ==
                      {:found, "gui1 tou2 - head of a turtle/glans penis"}
@@ -23,6 +24,9 @@ defmodule Ankikorean.ChineseCacheTest do
       assert_value Ankikorean.ChineseCache.get("龜甲萬") ==
                      {:found,
                       "Gui1 jia3 wan4 - Kikkoman, Japanese brand of soy sauce, food seasonings etc"}
+
+      # TODO fix this
+      assert_value Ankikorean.ChineseCache.get("韓國") == {:not_found}
     end
   end
 
@@ -31,14 +35,6 @@ defmodule Ankikorean.ChineseCacheTest do
       result = Ankikorean.ChineseCache.set("cache@example.com", %{"value" => "translation"})
 
       assert_value result == %{"value" => "translation"}
-    end
-
-    test "Cache is receivable" do
-      Ankikorean.ChineseCache.set("工作", "work")
-
-      assert_value Ankikorean.ChineseCache.get("工作") ==
-                     {:found,
-                      "gong1 zuo4 - to work/(of a machine) to operate/job/work/task/CL:個|个[ge4],份[fen4],項|项[xiang4] AND work"}
     end
   end
 end

@@ -3,6 +3,8 @@
 /db
 /deps
 .idea/
+.deliver/
+deliver/
 /*.ez
 RELEASE.md
 
@@ -31,3 +33,6 @@ npm-debug.log
 /deps/
 /config/
 /priv/
+/deliver/
+/deliver/config
+.deliver/releases/

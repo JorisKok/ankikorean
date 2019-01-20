@@ -18,6 +18,9 @@ defmodule Ankikorean.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [
+      applications: [
+        :edeliver # end of the list
+      ],
       mod: {Ankikorean.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
@@ -48,9 +51,10 @@ defmodule Ankikorean.Mixfile do
       {:dialyxir, "~> 1.0.0-rc.4", only: [:dev], runtime: false},
       {:quantum, "~> 2.3"},
       {:timex, "~> 3.0"},
-      {:distillery, "~> 2.0"},
       {:ex_doc, "~> 0.19", only: :dev, runtime: false},
       {:assert_value, ">= 0.0.0", only: [:dev, :test]},
+      {:edeliver, ">= 1.6.0"},
+      {:distillery, "~> 2.0", warn_missing: false},
     ]
   end
 end

@@ -12,7 +12,7 @@ defmodule Ankikorean.ChineseCache do
   end
 
   defp create_chinese_dictionary_entries_from_dictionary_file() do
-    File.stream!("dict/cedict_1_0_ts_utf-8_mdbg.txt")
+    File.stream!(Path.join(:code.priv_dir(:ankikorean), "static/dict/cedict_1_0_ts_utf-8_mdbg.txt"))
     |> Enum.map(&(add_entry_to_cache(&1)))
   end
 
