@@ -31,7 +31,6 @@ npm-debug.log
 /config/*.secret.exs
 /_build/
 /deps/
-/priv/
 /deliver/
 /deliver/config
 .deliver/releases/
