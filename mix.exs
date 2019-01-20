@@ -54,7 +54,7 @@ defmodule Ankikorean.Mixfile do
       {:ex_doc, "~> 0.19", only: :dev, runtime: false},
       {:assert_value, ">= 0.0.0", only: [:dev, :test]},
       {:edeliver, ">= 1.6.0"},
-      {:distillery, "~> 2.0", warn_missing: false},
+      {:distillery, "~> 2.0"},
     ]
   end
 end
