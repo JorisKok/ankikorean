@@ -13,7 +13,7 @@ defmodule Ankikorean.Application do
       # Other workers
       worker(Ankikorean.Cache, [[name: Ankikorean.Cache]]),
       worker(Ankikorean.ChineseCache, [[name: Ankikorean.ChineseCache]]),
-      worker(Ankikorean.Scheduler, [])
+#      worker(Ankikorean.Scheduler, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
