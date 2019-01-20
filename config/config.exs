@@ -11,7 +11,8 @@ config :ankikorean, AnkikoreanWeb.Endpoint,
   secret_key_base: "qLQOh5nYc2N2i5H7JttZUSvK7/wRqyGYIm4FBHgDB5Nd1VHE4S0ppfFnMiguZeRd",
   render_errors: [view: AnkikoreanWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Ankikorean.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+           adapter: Phoenix.PubSub.PG2],
+  server: true
 
 # Scheduler
 config :ankikorean, Ankikorean.Scheduler,

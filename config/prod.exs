@@ -16,11 +16,11 @@ use Mix.Config
 config :ankikorean,
        AnkikoreanWeb.Endpoint,
        http: [
-         port: {:system, "PORT"}
+         port: 4000
        ],
        url: [
          host: "localhost",
-         port: {:system, "PORT"}
+         port: 4000
        ],
          # This is critical for ensuring web-sockets properly authorize.
        cache_static_manifest: "priv/static/cache_manifest.json",
