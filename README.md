@@ -1,9 +1,9 @@
 # Ankikorean
 
 TODO:
-- Improve lookup speed
-- Enable/disable Chinese characters
-- Use ansible 
-- Use codeci
+- [x] Improve lookup speed
+- [ ] Enable/disable Chinese characters
+- [ ] Use codeci
+
 
 
